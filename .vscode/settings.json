@@ -1,0 +1,297 @@
+{
+  "editor.wordWrap": "on",
+  "editor.tabSize": 2,
+  "editor.fontFamily": "Fira Code, Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontSize": 14,
+  "editor.formatOnSave": false,
+  "editor.formatOnPaste": false,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll": false,
+    "source.fixAll.stylelint": true,
+    "source.fixAll.eslint": true, // this allows ESLint to auto fix on save
+    "source.organizeImports": false
+  },
+  // "window.autoDetectColorScheme": true,
+  "window.nativeTabs": true, // this is great, macOS only
+  "workbench.activityBar.visible": true,
+  "workbench.colorTheme": "One Dark Pro",
+  "workbench.editor.closeOnFileDelete": true,
+  "workbench.editor.highlightModifiedTabs": true,
+  "workbench.list.smoothScrolling": true,
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter.notebook.ipynb"
+  },
+  "workbench.editor.wrapTabs": true,
+  "workbench.startupEditor": "none",
+  "[python]": {
+    "editor.tabSize": 4,
+    "editor.defaultFormatter": "ms-python.python"
+  },
+  // "php.validate.executablePath": "C:\\xampp\\php\\php.exe",
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true
+  },
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+  "files.simpleDialog.enable": true,
+  "emmet.includeLanguages": {
+    "plaintext": "html",
+    "vue-html": "html",
+    "javascript": "javascriptreact",
+    "markdown": "html",
+    "php": "html",
+    "wxml": "html"
+  },
+  "gitlens.defaultDateStyle": "absolute",
+  "explorer.confirmDelete": false,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "terminal.integrated.fontFamily": "MesloLGS NF, Source Code Pro, monospace",
+  "terminal.integrated.windowsEnableConpty": true,
+  "explorer.confirmDragAndDrop": false,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.autoClosingBrackets": "languageDefined"
+  },
+  "[typescriptreact]": {
+    "editor.autoClosingBrackets": "languageDefined"
+  },
+  "markdownlint.config": {
+    "MD013": false,
+    "MD026": false,
+    "MD033": false
+  },
+  "[markdown]": {
+    "editor.tabCompletion": "onlySnippets",
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "editor.autoClosingBrackets": "languageDefined"
+  },
+  "latex-workshop.view.pdf.viewer": "browser",
+  "[vue]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[latex]": {
+    "editor.defaultFormatter": "James-Yu.latex-workshop"
+  },
+  "latex-workshop.bind.altKeymap.enabled": true,
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "go.formatTool": "goimports",
+  "go.useLanguageServer": true,
+  "[ignore]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[csharp]": {
+    "editor.defaultFormatter": "ms-dotnettools.csharp"
+  },
+  "code-runner.runInTerminal": true,
+  "code-runner.executorMap": {
+    "python": "python3 -u"
+  },
+  "python.linting.pylintArgs": [
+    "--unsafe-load-any-extension=y"
+  ],
+  "git.autofetch": true,
+  "[stylus]": {
+    "editor.defaultFormatter": "thisismanta.stylus-supremacy"
+  },
+  "i18n-ally.displayLanguage": "zh-CN",
+  "security.workspace.trust.untrustedFiles": "open",
+  "redhat.telemetry.enabled": true,
+  "editor.inlineSuggest.enabled": true,
+  "github.copilot.enable": {
+    "*": true,
+    "yaml": false,
+    "plaintext": false,
+    "markdown": false,
+    "typescript": false
+  },
+  "search.followSymlinks": false,
+  "search.exclude": {
+    "**/.git": true,
+    "**/.github": true,
+    "**/.nuxt": true,
+    "**/.output": true,
+    "**/.pnpm": true,
+    "**/.vscode": true,
+    "**/.yarn": true,
+    "**/bower_components": true,
+    "**/dist/**": true,
+    "**/logs": true,
+    "**/node_modules": true,
+    "**/out/**": true,
+    "**/package-lock.json": true,
+    "**/pnpm-lock.yaml": true,
+    "**/tmp": true,
+    "**/yarn.lock": true
+  },
+  "hediet.vscode-drawio.local-storage": "eyIuZHJhd2lvLWNvbmZpZyI6IntcImxhbmd1YWdlXCI6XCJcIixcImN1c3RvbUZvbnRzXCI6W10sXCJsaWJyYXJpZXNcIjpcImdlbmVyYWxcIixcImN1c3RvbUxpYnJhcmllc1wiOltcIkwuc2NyYXRjaHBhZFwiXSxcInBsdWdpbnNcIjpbXSxcInJlY2VudENvbG9yc1wiOltdLFwiZm9ybWF0V2lkdGhcIjpcIjI0MFwiLFwiY3JlYXRlVGFyZ2V0XCI6ZmFsc2UsXCJwYWdlRm9ybWF0XCI6e1wieFwiOjAsXCJ5XCI6MCxcIndpZHRoXCI6ODI3LFwiaGVpZ2h0XCI6MTE2OX0sXCJzZWFyY2hcIjp0cnVlLFwic2hvd1N0YXJ0U2NyZWVuXCI6dHJ1ZSxcImdyaWRDb2xvclwiOlwiI2QwZDBkMFwiLFwiZGFya0dyaWRDb2xvclwiOlwiIzZlNmU2ZVwiLFwiYXV0b3NhdmVcIjp0cnVlLFwicmVzaXplSW1hZ2VzXCI6bnVsbCxcIm9wZW5Db3VudGVyXCI6MCxcInZlcnNpb25cIjoxOCxcInVuaXRcIjoxLFwiaXNSdWxlck9uXCI6ZmFsc2UsXCJ1aVwiOlwiXCJ9In0=",
+  "files.associations": {
+    "*.css": "postcss",
+    "*.cjson": "jsonc",
+    "*.wxss": "css",
+    "*.wxs": "javascript",
+    "*.json5": "json",
+    "*.json": "jsonc"
+  },
+  "minapp-vscode.disableAutoConfig": true,
+  "[properties]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "cSpell.userWords": [
+    "adsense",
+    "advjs",
+    "alipay",
+    "antfu",
+    "antman",
+    "aplayer",
+    "attributify",
+    "autoload",
+    "bilibili",
+    "browserslist",
+    "browsersync",
+    "CNAME",
+    "composables",
+    "congroo",
+    "consola",
+    "datetime",
+    "demi",
+    "disqus",
+    "docsearch",
+    "dotfiles",
+    "douban",
+    "elpsy",
+    "errmsg",
+    "eslintignore",
+    "esno",
+    "execa",
+    "frontmatter",
+    "gltf",
+    "gtag",
+    "hexo",
+    "hitokoto",
+    "iconify",
+    "injuben",
+    "intlify",
+    "JSDELIVR",
+    "katex",
+    "koishi",
+    "Laravel",
+    "lazyload",
+    "leancloud",
+    "markdownlint",
+    "mirai",
+    "nbnhhsh",
+    "nestjs",
+    "netease",
+    "niubi",
+    "noopener",
+    "nprogress",
+    "nuxt",
+    "ohmyfetch",
+    "pinia",
+    "pixiv",
+    "pjax",
+    "pnpm",
+    "popperjs",
+    "prebuild",
+    "predeploy",
+    "prefetch",
+    "prismjs",
+    "qrcode",
+    "rehype",
+    "sagiri",
+    "sceneheader",
+    "setu",
+    "slidev",
+    "SPMD",
+    "Tailwindcss",
+    "tencent",
+    "tinycolor",
+    "tsup",
+    "typecheck",
+    "uncategorized",
+    "unist",
+    "Unocss",
+    "unplugin",
+    "Upptime",
+    "vercel",
+    "vite",
+    "vitejs",
+    "vitepress",
+    "vitesse",
+    "vitest",
+    "vuepress",
+    "Vuetify",
+    "vueuse",
+    "waline",
+    "webgl",
+    "webp",
+    "Wechat",
+    "weibo",
+    "windi",
+    "windicss",
+    "xiao",
+    "yolo",
+    "yunle",
+    "yunyoujun",
+    "yuque",
+    "zhihu"
+  ],
+  "[shellscript]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[dotenv]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[rust]": {
+    "editor.defaultFormatter": "rust-lang.rust-analyzer"
+  },
+  "diffEditor.ignoreTrimWhitespace": false,
+  "editor.formatOnType": false,
+  // Extension configs
+  "emmet.showSuggestionsAsSnippets": true,
+  "emmet.triggerExpansionOnTab": false,
+  "errorLens.enabledDiagnosticLevels": [
+    "warning",
+    "error"
+  ],
+  "errorLens.excludeBySource": [
+    "cSpell",
+    "Grammarly",
+    "eslint"
+  ],
+  // ESLint config: https://github.com/antfu/eslint-config
+  "eslint.codeAction.showDocumentation": {
+    "enable": true
+  },
+  "eslint.lintTask.enable": true,
+  "eslint.lintTask.options": "--fix .",
+  "eslint.alwaysShowStatus": true,
+  "eslint.packageManager": "pnpm",
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[svg]": {
+    "editor.defaultFormatter": "jock.svg"
+  },
+  "eslint.format.enable": true,
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+},
+  "liveshare.presence": false,
+  "terminal.integrated.defaultProfile.linux": "zsh"
+}
