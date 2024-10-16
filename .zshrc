@@ -158,3 +158,6 @@ alias gcgithub="git config user.name 'YunYouJun' && git config user.email 'me@yu
 export PNPM_HOME="/root/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
+
+# ruby
+export PATH="/usr/local/opt/ruby/bin:$PATH"
