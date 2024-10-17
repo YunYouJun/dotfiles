@@ -160,4 +160,4 @@ export PATH="$PNPM_HOME:$PATH"
 # pnpm end
 
 # ruby
-export PATH="/usr/local/opt/ruby/bin:$PATH"
+export PATH="/opt/homebrew/Cellar/ruby/3.3.5/bin:$PATH"
