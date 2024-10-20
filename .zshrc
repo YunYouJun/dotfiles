@@ -161,3 +161,8 @@ export PATH="$PNPM_HOME:$PATH"
 
 # ruby
 export PATH="/opt/homebrew/Cellar/ruby/3.3.5/bin:$PATH"
+
+# android
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export JAVA_HOME="/Users/yunyou/Applications/Android Studio.app/Contents/jbr/Contents/Home"
+export NDK_HOME="$ANDROID_HOME/ndk/$(ls -1 $ANDROID_HOME/ndk)"
