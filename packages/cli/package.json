@@ -1,0 +1,40 @@
+{
+  "name": "@yunyoujun/dotfiles",
+  "type": "module",
+  "version": "0.1.0",
+  "description": "CLI tool for syncing dotfiles",
+  "author": "YunYouJun <me@yunyoujun.cn>",
+  "license": "MIT",
+  "homepage": "https://github.com/YunYouJun/dotfiles",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YunYouJun/dotfiles",
+    "directory": "packages/cli"
+  },
+  "keywords": [
+    "dotfiles",
+    "cli",
+    "sync"
+  ],
+  "bin": {
+    "dotfiles": "./dist/cli.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "start": "tsx src/cli.ts"
+  },
+  "dependencies": {
+    "@clack/prompts": "^1.1.0",
+    "cac": "^7.0.0",
+    "consola": "^3.4.2"
+  },
+  "devDependencies": {
+    "tsup": "^8.5.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}

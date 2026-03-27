@@ -1,0 +1,21 @@
+{
+  "name": "@yunyoujun/dotfiles-monorepo",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "pnpm@10.33.0",
+  "scripts": {
+    "build": "pnpm -r run build",
+    "dev": "pnpm -r run dev",
+    "lint": "eslint .",
+    "release": "bumpp -r && pnpm -r run build",
+    "sync": "dotfiles sync"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^7.7.3",
+    "bumpp": "^11.0.1",
+    "changelogithub": "^14.0.0",
+    "eslint": "^10.1.0",
+    "typescript": "^5.9.3"
+  }
+}

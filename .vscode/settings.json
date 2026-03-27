@@ -6,20 +6,22 @@
   "editor.formatOnSave": false,
   "editor.formatOnPaste": false,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.codeActionsOnSave": {
-    "source.fixAll": false,
-    "source.fixAll.stylelint": true,
-    "source.fixAll.eslint": true, // this allows ESLint to auto fix on save
-    "source.organizeImports": false
+  "explorer.autoReveal": true,
+  "explorer.autoRevealExclude": {
+    "**/node_modules": false,
+    "**/bower_components": true
   },
-  // "window.autoDetectColorScheme": true,
-  "window.nativeTabs": true, // this is great, macOS only
-  "workbench.activityBar.visible": true,
-  "workbench.colorTheme": "One Dark Pro",
+  // Auto fix
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "never",
+    "source.fixAll.stylelint": "explicit",
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "never"
+  },
   "workbench.editor.closeOnFileDelete": true,
   "workbench.editor.highlightModifiedTabs": true,
   "workbench.list.smoothScrolling": true,
-  "workbench.iconTheme": "material-icon-theme",
+  "workbench.iconTheme": "vscode-icons",
   "workbench.editorAssociations": {
     "*.ipynb": "jupyter.notebook.ipynb"
   },
@@ -27,11 +29,12 @@
   "workbench.startupEditor": "none",
   "[python]": {
     "editor.tabSize": 4,
-    "editor.defaultFormatter": "ms-python.python"
+    "editor.defaultFormatter": "ms-python.python",
+    "editor.formatOnType": true
   },
   // "php.validate.executablePath": "C:\\xampp\\php\\php.exe",
   "files.exclude": {
-    "**/.git": true,
+    // "**/.git": true,
     "**/.svn": true,
     "**/.hg": true,
     "**/CVS": true,
@@ -46,9 +49,46 @@
     "javascript": "javascriptreact",
     "markdown": "html",
     "php": "html",
-    "wxml": "html"
+    "wxml": "html",
+    "axml": "xml"
   },
   "gitlens.defaultDateStyle": "absolute",
+  "gitlens.remotes": [
+    {
+      "domain": "code.alipay.com",
+      "type": "Custom",
+      "name": "AntCode",
+      "protocol": "https",
+      "urls": {
+        "repository": "https://code.alipay.com/${repo}",
+        "branches": "https://code.alipay.com/${repo}/branches",
+        "branch": "https://code.alipay.com/${repo}/tree/${branch}",
+        "commit": "https://code.alipay.com/${repo}/commit/${id}",
+        "file": "https://code.alipay.com/${repo}/blob/${branch}/${file}",
+        "fileInBranch": "https://code.alipay.com/${repo}/blob/${branch}/${file}",
+        "fileInCommit": "https://code.alipay.com/${repo}/blob/${id}/${file}",
+        "fileLine": "https://code.alipay.com/${repo}/blob/${branch}/${file}#L${line}",
+        "fileRange": "https://code.alipay.com/${repo}/blob/${branch}/${file}#L${line}-${endLine}"
+      }
+    },
+    {
+      "domain": "git.woa.com",
+      "type": "Custom",
+      "name": "Tencent",
+      "protocol": "https",
+      "urls": {
+        "repository": "https://git.woa.com/${repo}",
+        "branches": "https://git.woa.com/${repo}/branches",
+        "branch": "https://git.woa.com/${repo}/tree/${branch}",
+        "commit": "https://git.woa.com/${repo}/commit/${id}",
+        "file": "https://git.woa.com/${repo}/tree/${branch}/${file}",
+        "fileInBranch": "https://git.woa.com/${repo}/blob/${branch}/${file}",
+        "fileInCommit": "https://git.woa.com/${repo}/blob/${id}/${file}",
+        "fileLine": "https://git.woa.com/${repo}/blob/${branch}/${file}#L${line}",
+        "fileRange": "https://git.woa.com/${repo}/blob/${branch}/${file}#L${line}-${endLine}"
+      }
+    }
+  ],
   "explorer.confirmDelete": false,
   "javascript.updateImportsOnFileMove.enabled": "always",
   "terminal.integrated.fontFamily": "MesloLGS NF, Source Code Pro, monospace",
@@ -56,15 +96,17 @@
   "explorer.confirmDragAndDrop": false,
   "typescript.updateImportsOnFileMove.enabled": "always",
   "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
     "editor.autoClosingBrackets": "languageDefined"
   },
   "[typescriptreact]": {
-    "editor.autoClosingBrackets": "languageDefined"
+    "editor.autoClosingBrackets": "languageDefined",
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
   "markdownlint.config": {
     "MD013": false,
     "MD026": false,
+    "MD028": false,
     "MD033": false
   },
   "[markdown]": {
@@ -72,7 +114,7 @@
     "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
   },
   "[javascript]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "editor.defaultFormatter": "vscode.typescript-language-features",
     "editor.autoClosingBrackets": "languageDefined"
   },
   "latex-workshop.view.pdf.viewer": "browser",
@@ -80,7 +122,7 @@
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
   "[yaml]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
   "[latex]": {
     "editor.defaultFormatter": "James-Yu.latex-workshop"
@@ -114,19 +156,19 @@
   "editor.inlineSuggest.enabled": true,
   "github.copilot.enable": {
     "*": true,
-    "yaml": false,
-    "plaintext": false,
-    "markdown": false,
-    "typescript": false
+    "plaintext": true,
+    "markdown": true,
+    "scminput": false,
+    "yaml": true,
+    "typescript": true
   },
+  "github.copilot.editor.enableAutoCompletions": true,
   "search.followSymlinks": false,
   "search.exclude": {
     "**/.git": true,
-    "**/.github": true,
     "**/.nuxt": true,
     "**/.output": true,
     "**/.pnpm": true,
-    "**/.vscode": true,
     "**/.yarn": true,
     "**/bower_components": true,
     "**/dist/**": true,
@@ -144,7 +186,7 @@
     "*.cjson": "jsonc",
     "*.wxss": "css",
     "*.wxs": "javascript",
-    "*.json5": "json",
+    "*.json5": "jsonc",
     "*.json": "jsonc"
   },
   "minapp-vscode.disableAutoConfig": true,
@@ -154,46 +196,66 @@
   "cSpell.userWords": [
     "adsense",
     "advjs",
+    "AFTS",
     "alipay",
     "antfu",
     "antman",
     "aplayer",
     "attributify",
     "autoload",
+    "Bili",
     "bilibili",
     "browserslist",
     "browsersync",
+    "bumpp",
+    "bytedance",
+    "changelogithub",
+    "cilicili",
     "CNAME",
     "composables",
     "congroo",
     "consola",
     "datetime",
+    "defu",
     "demi",
+    "dexie",
     "disqus",
     "docsearch",
     "dotfiles",
     "douban",
     "elpsy",
+    "Elysia",
     "errmsg",
     "eslintignore",
     "esno",
     "execa",
     "frontmatter",
+    "Galacean",
+    "GLSL",
     "gltf",
     "gtag",
+    "headlessui",
     "hexo",
     "hitokoto",
+    "Hono",
     "iconify",
     "injuben",
     "intlify",
+    "jiti",
+    "jsapi",
     "JSDELIVR",
     "katex",
     "koishi",
+    "kolorist",
     "Laravel",
     "lazyload",
     "leancloud",
+    "leetcode",
+    "Liteapp",
     "markdownlint",
+    "Midjourney",
     "mirai",
+    "Napcat",
     "nbnhhsh",
     "nestjs",
     "netease",
@@ -201,8 +263,14 @@
     "noopener",
     "nprogress",
     "nuxt",
+    "nuxtjs",
+    "ofetch",
     "ohmyfetch",
+    "OPENAI",
+    "oper",
+    "picocolors",
     "pinia",
+    "Pixi",
     "pixiv",
     "pjax",
     "pnpm",
@@ -210,24 +278,47 @@
     "prebuild",
     "predeploy",
     "prefetch",
+    "primevue",
     "prismjs",
+    "protos",
     "qrcode",
     "rehype",
+    "reka",
+    "rspack",
+    "safelist",
     "sagiri",
     "sceneheader",
     "setu",
+    "Shiki",
+    "shikijs",
     "slidev",
+    "splitpanes",
     "SPMD",
+    "stylelint",
+    "svrkit",
     "Tailwindcss",
+    "TAURI",
+    "taze",
     "tencent",
+    "tileheight",
+    "tilemap",
+    "Tileset",
+    "tilesets",
+    "tilewidth",
     "tinycolor",
     "tsup",
+    "twoslash",
     "typecheck",
+    "typedoc",
     "uncategorized",
+    "unhead",
     "unist",
+    "unjs",
     "Unocss",
     "unplugin",
+    "unref",
     "Upptime",
+    "valaxy",
     "vercel",
     "vite",
     "vitejs",
@@ -241,13 +332,18 @@
     "webgl",
     "webp",
     "Wechat",
+    "wechatpay",
     "weibo",
+    "weixin",
     "windi",
     "windicss",
+    "Wxfed",
     "xiao",
     "yolo",
     "yunle",
+    "yunlefun",
     "yunyoujun",
+    "yunyouyang",
     "yuque",
     "zhihu"
   ],
@@ -260,7 +356,6 @@
   "[rust]": {
     "editor.defaultFormatter": "rust-lang.rust-analyzer"
   },
-  "diffEditor.ignoreTrimWhitespace": false,
   "editor.formatOnType": false,
   // Extension configs
   "emmet.showSuggestionsAsSnippets": true,
@@ -272,7 +367,8 @@
   "errorLens.excludeBySource": [
     "cSpell",
     "Grammarly",
-    "eslint"
+    "eslint",
+    "ts(7053)"
   ],
   // ESLint config: https://github.com/antfu/eslint-config
   "eslint.codeAction.showDocumentation": {
@@ -280,8 +376,6 @@
   },
   "eslint.lintTask.enable": true,
   "eslint.lintTask.options": "--fix .",
-  "eslint.alwaysShowStatus": true,
-  "eslint.packageManager": "pnpm",
   "[json]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
@@ -291,7 +385,193 @@
   "eslint.format.enable": true,
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
-},
+  },
+  // Disable the default formatter, use eslint instead
+  "prettier.enable": false,
+
+  // Silent the stylistic rules in your IDE, but still auto fix them
+  "eslint.rules.customizations": [
+    { "rule": "style/*", "severity": "off", "fixable": true },
+    { "rule": "format/*", "severity": "off", "fixable": true },
+    { "rule": "*-indent", "severity": "off", "fixable": true },
+    { "rule": "*-spacing", "severity": "off", "fixable": true },
+    { "rule": "*-spaces", "severity": "off", "fixable": true },
+    { "rule": "*-order", "severity": "off", "fixable": true },
+    { "rule": "*-dangle", "severity": "off", "fixable": true },
+    { "rule": "*-newline", "severity": "off", "fixable": true },
+    { "rule": "*quotes", "severity": "off", "fixable": true },
+    { "rule": "*semi", "severity": "off", "fixable": true }
+  ],
+
+  // Enable eslint for all supported languages
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "vue",
+    "html",
+    "markdown",
+    "json",
+    "json5",
+    "jsonc",
+    "yaml",
+    "toml",
+    "xml",
+    "gql",
+    "graphql",
+    "astro",
+    "svelte",
+    "css",
+    "less",
+    "scss",
+    "pcss",
+    "postcss"
+  ],
   "liveshare.presence": false,
-  "terminal.integrated.defaultProfile.linux": "zsh"
+  "terminal.integrated.defaultProfile.linux": "zsh",
+  "terminal.integrated.allowMnemonics": true,
+  "terminal.explorerKind": "external",
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
+  "terminal.integrated.profiles.windows": {
+    "PowerShell": {
+      "source": "PowerShell",
+      "icon": "terminal-powershell"
+    },
+    "Command Prompt": {
+      "path": [
+        "${env:windir}\\Sysnative\\cmd.exe",
+        "${env:windir}\\System32\\cmd.exe"
+      ],
+      "args": [],
+      "icon": "terminal-cmd"
+    },
+    "Git Bash": {
+      "source": "Git Bash"
+    },
+    "zsh": {
+      "path": "C:\\Program Files\\Git\\bin\\bash.exe",
+      "args": [
+        "--login",
+        "-i",
+        "-c",
+        "zsh"
+      ]
+    }
+  },
+  "leetcode.defaultLanguage": "typescript",
+  "leetcode.nodePath": "/Users/yunyou/.nvm/versions/node/v18.18.0/bin/node",
+  "leetcode.endpoint": "leetcode-cn",
+  "leetcode.workspaceFolder": "",
+  "http.proxySupport": "off",
+  "[dart]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.rulers": [
+      80
+    ],
+    "editor.selectionHighlight": false,
+    "editor.suggestSelection": "first",
+    "editor.tabCompletion": "onlySnippets",
+    "editor.wordBasedSuggestions": "off",
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false,
+    "editor.suggest.insertMode": "replace",
+    "editor.defaultFormatter": "Dart-Code.dart-code",
+    "editor.inlayHints.enabled": "offUnlessPressed"
+  },
+  "dart.debugExternalPackageLibraries": true,
+  "dart.debugSdkLibraries": false,
+  "projectManager.tags": [
+    "Personal",
+    "Work",
+    "YunLeFun",
+    "Ref"
+  ],
+  "window.nativeTabs": true,
+  "workbench.colorTheme": "One Dark Pro",
+  "githubPullRequests.pullBranch": "never",
+  "stylelint.packageManager": "pnpm",
+  "prisma.showPrismaDataPlatformNotification": false,
+  "security.promptForLocalFileProtocolHandling": false,
+  "[xml]": {
+    "editor.defaultFormatter": "redhat.vscode-xml"
+  },
+  "diffEditor.ignoreTrimWhitespace": false,
+  "javascript.preferences.importModuleSpecifier": "relative",
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "github.copilot.advanced": {
+    "authProvider": "github"
+  },
+  "gongfeng.copilot.enableCodeIndexingForCompletion": true,
+  "chat.mcp.discovery.enabled": {
+    "claude-desktop": true,
+    "windsurf": true,
+    "cursor-global": true,
+    "cursor-workspace": true
+  },
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "docker.extension.enableComposeLanguageServer": false,
+  "gongfeng.copilot.enableNextEditSuggestionsUI": true,
+  "chat.mcp.serverSampling": {
+    "Global in Code: mcp-server-time": {
+      "allowedModels": [
+        "github.copilot-chat/gpt-4.1",
+        "github.copilot-chat/claude-sonnet-4",
+        "github.copilot-chat/gpt-4o",
+        "github.copilot-chat/o4-mini"
+      ]
+    }
+  },
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "[scss]": {
+    "editor.defaultFormatter": "vscode.css-language-features"
+  },
+  "terminal.integrated.suggest.enabled": true,
+  "playwright.reuseBrowser": false,
+  "[dockercompose]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced",
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": true
+    },
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "gitlens.ai.model": "vscode",
+  "gitlens.ai.vscode.model": "copilot:gpt-4.1",
+  "chat.mcp.gallery.enabled": true,
+  "python.defaultInterpreterPath": "/opt/homebrew/bin/python3",
+  "security.promptForRemoteFileProtocolHandling": false,
+  "json.schemaDownload.trustedDomains": {
+    "https://schemastore.azurewebsites.net/": true,
+    "https://raw.githubusercontent.com/": true,
+    "https://www.schemastore.org/": true,
+    "https://json.schemastore.org/": true,
+    "https://json-schema.org/": true,
+    "https://biomejs.dev": true
+  },
+  "chat.tools.terminal.autoApprove": {
+    "npx skills": true,
+    "/^npm pack --dry-run skills 2>/dev/null; npm view skills 2>/dev/null \\| head -20; npm view @nicepkg/skills-cli 2>/dev/null \\| head -20$/": {
+      "approve": true,
+      "matchCommandLine": true
+    }
+  },
+  "chat.tools.urls.autoApprove": {
+    "https://github.com": {
+      "approveRequest": false,
+      "approveResponse": true
+    },
+    "https://skills.sh": {
+      "approveRequest": false,
+      "approveResponse": true
+    }
+  }
 }
