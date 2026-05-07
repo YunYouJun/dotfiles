@@ -34,11 +34,17 @@ export const dotfiles: DotfileEntry[] = [
 ]
 
 export function getRepoRoot(): string {
+  if (process.env.DOTFILES_REPO_ROOT)
+    return path.resolve(process.env.DOTFILES_REPO_ROOT)
+
   // packages/cli → 仓库根目录
   return path.resolve(import.meta.dirname, '..', '..', '..')
 }
 
 export function getHomeDir(): string {
+  if (process.env.DOTFILES_HOME)
+    return path.resolve(process.env.DOTFILES_HOME)
+
   return os.homedir()
 }
 

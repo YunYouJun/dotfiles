@@ -1,6 +1,7 @@
 import type { DotfileEntry } from './config'
-import { execSync } from 'node:child_process'
+import { execFileSync, execSync } from 'node:child_process'
 import fs from 'node:fs'
+import os from 'node:os'
 import path from 'node:path'
 import process from 'node:process'
 import * as p from '@clack/prompts'
@@ -25,7 +26,7 @@ interface SyncResult {
   secretsFound?: number
 }
 
-const SYNC_META_RE = /^# synced by dotfiles-cli at .+\n?/m
+const SYNC_META_RE = /^# synced by @yunyoujun\/dotfiles at .+\n?/m
 const ISO_MS_RE = /\.\d+Z$/
 
 function ensureDir(filePath: string) {
@@ -65,6 +66,51 @@ function backupFile(filePath: string) {
   const backupPath = `${filePath}.backup.${Date.now()}`
   fs.copyFileSync(filePath, backupPath)
   return backupPath
+}
+
+function normalizeSyncedContent(content: string): string {
+  return `${content.replace(SYNC_META_RE, '').trimEnd()}\n`
+}
+
+function maskContentSecrets(content: string) {
+  const secrets = detectSecrets(content)
+  return {
+    content: secrets.length > 0 ? maskSecrets(content, secrets) : content,
+    secretsFound: secrets.length,
+  }
+}
+
+function printMaskedDiff(sourceLabel: string, targetLabel: string, sourceContent: string, targetContent: string) {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'dotfiles-diff-'))
+  const sourcePath = path.join(tempDir, 'repo')
+  const targetPath = path.join(tempDir, 'home')
+
+  try {
+    fs.writeFileSync(sourcePath, sourceContent, 'utf-8')
+    fs.writeFileSync(targetPath, targetContent, 'utf-8')
+
+    const output = execFileSync('diff', [
+      '--color=always',
+      '-u',
+      '--label',
+      sourceLabel,
+      '--label',
+      targetLabel,
+      sourcePath,
+      targetPath,
+    ], {
+      encoding: 'utf-8',
+      stdio: ['pipe', 'pipe', 'pipe'],
+    })
+    console.log(output)
+  }
+  catch (e: any) {
+    if (e.stdout)
+      console.log(e.stdout)
+  }
+  finally {
+    fs.rmSync(tempDir, { recursive: true, force: true })
+  }
 }
 
 /**
@@ -331,7 +377,7 @@ export async function syncInteractive() {
       p.cancel('Cancelled')
       process.exit(0)
     }
-    mode = modeChoice
+    mode = modeChoice as SyncMode
   }
 
   const force = await p.confirm({
@@ -344,12 +390,16 @@ export async function syncInteractive() {
     process.exit(0)
   }
 
+  const selectedEntries = selected as DotfileEntry[]
+  const syncDirection = direction as SyncDirection
+  const shouldForce = force as boolean
+
   const s = p.spinner()
   s.start('Syncing...')
 
   const results: SyncResult[] = []
-  for (const entry of selected) {
-    results.push(syncEntry(entry, { direction, mode, force, dryRun: false }))
+  for (const entry of selectedEntries) {
+    results.push(syncEntry(entry, { direction: syncDirection, mode, force: shouldForce, dryRun: false }))
   }
 
   s.stop('Sync complete')
@@ -384,37 +434,18 @@ export function diff() {
       continue
     }
 
-    // 为了准确比较，把本地文件也 mask 后再 diff
-    let targetContent = fs.readFileSync(realTarget, 'utf-8')
-    // 移除 sync meta 注释
-    targetContent = `${targetContent.replace(SYNC_META_RE, '').trimEnd()}\n`
-    const secrets = detectSecrets(targetContent)
-    if (secrets.length > 0) {
-      targetContent = maskSecrets(targetContent, secrets)
-    }
+    // 为了准确比较，把本地文件 mask 后再 diff，避免输出真实 secret
+    const targetMasked = maskContentSecrets(normalizeSyncedContent(fs.readFileSync(realTarget, 'utf-8')))
+    const sourceContent = normalizeSyncedContent(fs.readFileSync(source, 'utf-8'))
 
-    const sourceContent = fs.readFileSync(source, 'utf-8')
-
-    if (sourceContent === targetContent) {
-      consola.info(`${entry.source}: identical${secrets.length ? ' (after masking secrets)' : ''}`)
+    if (sourceContent === targetMasked.content) {
+      consola.info(`${entry.source}: identical${targetMasked.secretsFound ? ' (after masking secrets)' : ''}`)
       continue
     }
 
     hasDiff = true
     consola.warn(`${entry.source}: differs`)
-
-    // 用系统 diff 展示（原始文件）
-    try {
-      const output = execSync(`diff --color=always "${source}" "${realTarget}"`, {
-        encoding: 'utf-8',
-        stdio: ['pipe', 'pipe', 'pipe'],
-      })
-      console.log(output)
-    }
-    catch (e: any) {
-      if (e.stdout)
-        console.log(e.stdout)
-    }
+    printMaskedDiff(source, realTarget, sourceContent, targetMasked.content)
   }
 
   if (!hasDiff)
